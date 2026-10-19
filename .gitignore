@@ -1,0 +1,21 @@
+# Ambiente
+.env
+*.local
+
+# Backend (Maven)
+museum-backend/target/
+*.class
+HELP.md
+
+# Frontend
+museum-frontend/node_modules/
+museum-frontend/dist/
+
+# IDE e sistema
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.iml
+.DS_Store
+Thumbs.db
+*.log
