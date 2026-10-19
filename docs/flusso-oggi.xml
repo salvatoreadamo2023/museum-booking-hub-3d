@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Flusso di oggi" id="d1">
+    <mxGraphModel dx="1578" dy="867" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lane0" parent="1" style="swimlane;horizontal=1;startSize=40;fillColor=#E1D5E7;strokeColor=#666666;fontStyle=1;fontSize=22;swimlaneFillColor=#FFFFFF;" value="Visitatore" vertex="1">
+          <mxGeometry height="730" width="280" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lane1" parent="1" style="swimlane;horizontal=1;startSize=40;fillColor=#D5E8D4;strokeColor=#666666;fontStyle=1;fontSize=22;swimlaneFillColor=#FFFFFF;" value="Personale del museo" vertex="1">
+          <mxGeometry height="730" width="280" x="340" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="s0" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#333333;fontSize=22;" value="Telefona o scrive una e-mail per chiedere una visita" vertex="1">
+          <mxGeometry height="60" width="220" x="70" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#333333;fontSize=22;" value="Concorda data e posti *" vertex="1">
+          <mxGeometry height="60" width="220" x="370" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#333333;fontSize=22;" value="Invia o porta la lista dei partecipanti su carta" vertex="1">
+          <mxGeometry height="60" width="220" x="70" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#333333;fontSize=22;" value="Riceve la lista cartacea e registra manualmente" vertex="1">
+          <mxGeometry height="60" width="220" x="370" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#333333;fontSize=22;" value="Per disdire, avvisa almeno 10 giorni prima" vertex="1">
+          <mxGeometry height="60" width="220" x="70" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#333333;fontSize=22;" value="Aggiorna i registri cartacei o file locali *" vertex="1">
+          <mxGeometry height="60" width="220" x="370" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="e0" edge="1" parent="1" source="s0" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#333333;" target="s1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="s1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#333333;" target="s2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="s2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#333333;" target="s3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="s3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#333333;" target="s4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="s4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#333333;" target="s5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#FFF2CC;strokeColor=#BF9000;fontSize=22;" value="Assenza di una mappa 3D interattiva, di una gestione utenti automatizzata, di API centralizzate, di una raccolta di feedback e di indicatori (KPI) sull&#39;attività." vertex="1">
+          <mxGeometry height="55" width="580" x="40" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=11;fontStyle=2;" value="* Passaggio ipotizzato: non confermato dal museo (gli altri passaggi risultano dalla pagina del museo)." vertex="1">
+          <mxGeometry height="30" width="580" x="40" y="840" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
