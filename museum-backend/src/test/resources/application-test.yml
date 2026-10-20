@@ -1,0 +1,21 @@
+# Profilo "test": database H2 in memoria (compatibile MySQL), nessun MySQL/Docker necessario.
+spring:
+  datasource:
+    url: jdbc:h2:mem:museumtest;MODE=MySQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+app:
+  admin:
+    nome: Admin Test
+    email: admin@test.it
+    password: PasswordAdmin1
+  jwt:
+    secret: chiave-solo-per-i-test-lunga-almeno-32-caratteri
+    expiration-ms: 3600000
+  cors:
+    allowed-origins: http://localhost:5173
