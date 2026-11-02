@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0">
+  <diagram name="Casi d&#39;uso" id="d1">
+    <mxGraphModel dx="2718" dy="851" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sys" parent="1" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontSize=14;fillColor=#F8F8F8;strokeColor=#666666;" value="Museum Booking Hub 3D " vertex="1">
+          <mxGeometry height="820" width="860" x="200" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="vis" parent="1" style="fontSize=24;" value="Visitatore" vertex="1">
+          <mxGeometry height="60" width="200" x="-120" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="adm" parent="1" style="fontSize=24;" value="Amministratore" vertex="1">
+          <mxGeometry height="60" width="210" x="-120" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="login" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=16;" value="Registrazione e accesso" vertex="1">
+          <mxGeometry height="50" width="200" x="220" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="u1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=16;" value="Consulta fasce orarie e posti liberi" vertex="1">
+          <mxGeometry height="50" width="200" x="520" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="u2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=16;" value="Esplora la Mappa 3D interattiva" vertex="1">
+          <mxGeometry height="50" width="200" x="520" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="u3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=16;" value="Prenota visita e posti" vertex="1">
+          <mxGeometry height="50" width="200" x="520" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="u4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=16;" value="Consulta le proprie prenotazioni" vertex="1">
+          <mxGeometry height="50" width="200" x="520" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="u5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=16;" value="Disdice la prenotazione (fino a 1 ora prima)" vertex="1">
+          <mxGeometry height="50" width="200" x="520" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="u6" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=16;" value="Lascia feedback dopo la visita" vertex="1">
+          <mxGeometry height="50" width="200" x="520" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="posti" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=16;" value="Sceglie i posti nella mappa 3D del salone" vertex="1">
+          <mxGeometry height="50" width="210" x="820" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=16;" value="Gestisce visite e capienze" vertex="1">
+          <mxGeometry height="50" width="200" x="520" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=16;" value="Gestisce il registro prenotazioni" vertex="1">
+          <mxGeometry height="50" width="200" x="520" y="535" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=16;" value="Amministrazione Utenti (Ruoli/Stati)" vertex="1">
+          <mxGeometry height="50" width="200" x="520" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=16;" value="Consulta Dashboard &amp; Analytics" vertex="1">
+          <mxGeometry height="50" width="200" x="520" y="665" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=16;" value="Consulta feedback ricevuti" vertex="1">
+          <mxGeometry height="50" width="200" x="520" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="l0" edge="1" parent="1" source="vis" style="endArrow=none;html=1;strokeColor=#333333;" target="u1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" edge="1" parent="1" source="vis" style="endArrow=none;html=1;strokeColor=#333333;" target="u2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" edge="1" parent="1" source="vis" style="endArrow=none;html=1;strokeColor=#333333;" target="u3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l3" edge="1" parent="1" source="vis" style="endArrow=none;html=1;strokeColor=#333333;" target="u4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l4" edge="1" parent="1" source="vis" style="endArrow=none;html=1;strokeColor=#333333;" target="u5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l5" edge="1" parent="1" source="vis" style="endArrow=none;html=1;strokeColor=#333333;" target="u6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l6" edge="1" parent="1" source="adm" style="endArrow=none;html=1;strokeColor=#333333;" target="a1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l7" edge="1" parent="1" source="adm" style="endArrow=none;html=1;strokeColor=#333333;" target="a2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l9" edge="1" parent="1" source="adm" style="endArrow=none;html=1;strokeColor=#333333;" target="a4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l8" edge="1" parent="1" source="adm" style="endArrow=none;html=1;strokeColor=#333333;" target="a3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l10" edge="1" parent="1" source="adm" style="endArrow=none;html=1;strokeColor=#333333;" target="a5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l11" edge="1" parent="1" source="vis" style="endArrow=none;html=1;strokeColor=#333333;" target="login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l12" edge="1" parent="1" source="adm" style="endArrow=none;html=1;strokeColor=#333333;" target="login">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i1" edge="1" parent="1" source="u3" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#333333;labelBackgroundColor=#F8F8F8;fontSize=11;" target="posti" >
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
