@@ -1,0 +1,196 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Diagramma delle classi" id="d1">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1240" pageHeight="990" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="User" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=12;align=left;verticalAlign=top;spacing=6;dashed=0;arcSize=6;fontStyle=0;" value="&lt;div style=&quot;background:#DAE8FC;margin:-6px -6px 0 -6px;padding:4px 0;text-align:center;border-bottom:1px solid #333&quot;&gt;&lt;div style=&quot;font-size:10px;color:#555&quot;&gt;«entity»&lt;/div&gt;&lt;div style=&quot;font-weight:bold;font-size:13px&quot;&gt;User&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding-top:4px;font-size:11px;font-family:Consolas,monospace&quot;&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- id: Long&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- nome: String&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- email: String&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- passwordHash: String&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- ruolo: Ruolo&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- stato: StatoAccount&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- createdAt: LocalDateTime&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry x="40" y="60" width="300" height="177" as="geometry" />
+        </mxCell>
+        <mxCell id="Reservation" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=12;align=left;verticalAlign=top;spacing=6;dashed=0;arcSize=6;fontStyle=0;" value="&lt;div style=&quot;background:#DAE8FC;margin:-6px -6px 0 -6px;padding:4px 0;text-align:center;border-bottom:1px solid #333&quot;&gt;&lt;div style=&quot;font-size:10px;color:#555&quot;&gt;«entity»&lt;/div&gt;&lt;div style=&quot;font-weight:bold;font-size:13px&quot;&gt;Reservation&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding-top:4px;font-size:11px;font-family:Consolas,monospace&quot;&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- id: Long&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- codice: String&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- user: User&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- tour: Tour&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- dataVisita: LocalDate&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- orario: LocalTime&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- stato: StatoPrenotazione&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- createdAt: LocalDateTime&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- posti: List&amp;lt;ReservationSeat&amp;gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry x="450" y="60" width="330" height="211" as="geometry" />
+        </mxCell>
+        <mxCell id="Tour" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=12;align=left;verticalAlign=top;spacing=6;dashed=0;arcSize=6;fontStyle=0;" value="&lt;div style=&quot;background:#DAE8FC;margin:-6px -6px 0 -6px;padding:4px 0;text-align:center;border-bottom:1px solid #333&quot;&gt;&lt;div style=&quot;font-size:10px;color:#555&quot;&gt;«entity»&lt;/div&gt;&lt;div style=&quot;font-weight:bold;font-size:13px&quot;&gt;Tour&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding-top:4px;font-size:11px;font-family:Consolas,monospace&quot;&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- id: Long&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- titolo: String&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- descrizione: String&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- durataMin: Integer&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- prezzo: BigDecimal&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- capienza: Integer&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- slots: List&amp;lt;TourSlot&amp;gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry x="900" y="60" width="300" height="177" as="geometry" />
+        </mxCell>
+        <mxCell id="Seat" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=12;align=left;verticalAlign=top;spacing=6;dashed=0;arcSize=6;fontStyle=0;" value="&lt;div style=&quot;background:#DAE8FC;margin:-6px -6px 0 -6px;padding:4px 0;text-align:center;border-bottom:1px solid #333&quot;&gt;&lt;div style=&quot;font-size:10px;color:#555&quot;&gt;«entity»&lt;/div&gt;&lt;div style=&quot;font-weight:bold;font-size:13px&quot;&gt;ReservationSeat&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding-top:4px;font-size:11px;font-family:Consolas,monospace&quot;&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- id: Long&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- reservation: Reservation&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- tour: Tour&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- dataVisita: LocalDate&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- orario: LocalTime&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- numeroPosto: Integer&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- tariffa: Tariffa&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- prezzoApplicato: BigDecimal&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry x="450" y="440" width="330" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="Slot" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=12;align=left;verticalAlign=top;spacing=6;dashed=0;arcSize=6;fontStyle=0;" value="&lt;div style=&quot;background:#DAE8FC;margin:-6px -6px 0 -6px;padding:4px 0;text-align:center;border-bottom:1px solid #333&quot;&gt;&lt;div style=&quot;font-size:10px;color:#555&quot;&gt;«entity»&lt;/div&gt;&lt;div style=&quot;font-weight:bold;font-size:13px&quot;&gt;TourSlot&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding-top:4px;font-size:11px;font-family:Consolas,monospace&quot;&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- id: Long&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- tour: Tour&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- orario: LocalTime&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- attivo: Boolean&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry x="900" y="400" width="300" height="126" as="geometry" />
+        </mxCell>
+        <mxCell id="Tariffa" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=12;align=left;verticalAlign=top;spacing=6;dashed=0;arcSize=6;fontStyle=0;" value="&lt;div style=&quot;background:#DAE8FC;margin:-6px -6px 0 -6px;padding:4px 0;text-align:center;border-bottom:1px solid #333&quot;&gt;&lt;div style=&quot;font-size:10px;color:#555&quot;&gt;«entity»&lt;/div&gt;&lt;div style=&quot;font-weight:bold;font-size:13px&quot;&gt;Tariffa&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding-top:4px;font-size:11px;font-family:Consolas,monospace&quot;&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- id: Long&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- nome: String&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- scontoPercentuale: Integer&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- predefinita: Boolean&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry x="900" y="600" width="300" height="126" as="geometry" />
+        </mxCell>
+        <mxCell id="Feedback" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=12;align=left;verticalAlign=top;spacing=6;dashed=0;arcSize=6;fontStyle=0;" value="&lt;div style=&quot;background:#DAE8FC;margin:-6px -6px 0 -6px;padding:4px 0;text-align:center;border-bottom:1px solid #333&quot;&gt;&lt;div style=&quot;font-size:10px;color:#555&quot;&gt;«entity»&lt;/div&gt;&lt;div style=&quot;font-weight:bold;font-size:13px&quot;&gt;Feedback&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding-top:4px;font-size:11px;font-family:Consolas,monospace&quot;&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- id: Long&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- user: User&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- tour: Tour&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- voto: Integer&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- commento: String&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- createdAt: LocalDateTime&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry x="450" y="720" width="330" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="Sessione" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=12;align=left;verticalAlign=top;spacing=6;dashed=0;arcSize=6;fontStyle=0;" value="&lt;div style=&quot;background:#F5F5F5;margin:-6px -6px 0 -6px;padding:4px 0;text-align:center;border-bottom:1px solid #333&quot;&gt;&lt;div style=&quot;font-size:10px;color:#555&quot;&gt;«entity»&lt;/div&gt;&lt;div style=&quot;font-weight:bold;font-size:13px&quot;&gt;Sessione&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding-top:4px;font-size:11px;font-family:Consolas,monospace&quot;&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- id: String&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- userId: Long&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- scadeIl: Instant&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- revocata: boolean&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;- creataIl: LocalDateTime&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;border-top:1px solid #333;margin:4px -6px 0 -6px;padding:4px 6px 0 6px;font-size:11px;font-family:Consolas,monospace&quot;&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;+ isAttiva(): boolean&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry x="40" y="470" width="300" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Ruolo" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=12;align=left;verticalAlign=top;spacing=6;dashed=0;arcSize=6;fontStyle=0;" value="&lt;div style=&quot;background:#FFF2CC;margin:-6px -6px 0 -6px;padding:4px 0;text-align:center;border-bottom:1px solid #333&quot;&gt;&lt;div style=&quot;font-size:10px;color:#555&quot;&gt;«enumeration»&lt;/div&gt;&lt;div style=&quot;font-weight:bold;font-size:13px&quot;&gt;Ruolo&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding-top:4px;font-size:11px;font-family:Consolas,monospace&quot;&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;VISITATORE&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;ADMIN&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry x="40" y="320" width="140" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="StatoAccount" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=12;align=left;verticalAlign=top;spacing=6;dashed=0;arcSize=6;fontStyle=0;" value="&lt;div style=&quot;background:#FFF2CC;margin:-6px -6px 0 -6px;padding:4px 0;text-align:center;border-bottom:1px solid #333&quot;&gt;&lt;div style=&quot;font-size:10px;color:#555&quot;&gt;«enumeration»&lt;/div&gt;&lt;div style=&quot;font-weight:bold;font-size:13px&quot;&gt;StatoAccount&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding-top:4px;font-size:11px;font-family:Consolas,monospace&quot;&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;ATTIVO&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;SOSPESO&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry x="200" y="320" width="140" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="StatoPren" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;fontSize=12;align=left;verticalAlign=top;spacing=6;dashed=0;arcSize=6;fontStyle=0;" value="&lt;div style=&quot;background:#FFF2CC;margin:-6px -6px 0 -6px;padding:4px 0;text-align:center;border-bottom:1px solid #333&quot;&gt;&lt;div style=&quot;font-size:10px;color:#555&quot;&gt;«enumeration»&lt;/div&gt;&lt;div style=&quot;font-weight:bold;font-size:13px&quot;&gt;StatoPrenotazione&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding-top:4px;font-size:11px;font-family:Consolas,monospace&quot;&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;CONFERMATA&lt;/div&gt;&lt;div style=&quot;height:17px;white-space:nowrap&quot;&gt;ANNULLATA&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry x="40" y="720" width="180" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="m1a" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=0;" value="*" vertex="1">
+          <mxGeometry x="420" y="82" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m1b" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=0;" value="1" vertex="1">
+          <mxGeometry x="346" y="82" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="l1" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=10;fontColor=#555;align=left;verticalAlign=middle;fontStyle=2;" value="user" vertex="1">
+          <mxGeometry x="350" y="102" width="100" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m2a" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=0;" value="*" vertex="1">
+          <mxGeometry x="786" y="82" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m2b" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=right;verticalAlign=middle;fontStyle=0;" value="1" vertex="1">
+          <mxGeometry x="836" y="82" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="l2" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=10;fontColor=#555;align=right;verticalAlign=middle;fontStyle=2;" value="tour" vertex="1">
+          <mxGeometry x="790" y="102" width="100" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m3a" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=0;" value="1" vertex="1">
+          <mxGeometry x="623" y="289" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m3b" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=0;" value="0..*" vertex="1">
+          <mxGeometry x="623" y="422" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="l3" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=10;fontColor=#555;align=right;verticalAlign=middle;fontStyle=2;" value="posti" vertex="1">
+          <mxGeometry x="505" y="420" width="100" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m4a" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=0;" value="*" vertex="1">
+          <mxGeometry x="786" y="462" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m4b" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=right;verticalAlign=middle;fontStyle=0;" value="1" vertex="1">
+          <mxGeometry x="836" y="189" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m5a" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=0;" value="1" vertex="1">
+          <mxGeometry x="1058" y="255" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m5b" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=0;" value="0..*" vertex="1">
+          <mxGeometry x="1058" y="382" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="l5" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=10;fontColor=#555;align=right;verticalAlign=middle;fontStyle=2;" value="slots" vertex="1">
+          <mxGeometry x="940" y="380" width="100" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m6a" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=0;" value="*" vertex="1">
+          <mxGeometry x="786" y="586" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m6b" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=right;verticalAlign=middle;fontStyle=0;" value="1" vertex="1">
+          <mxGeometry x="836" y="645" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m7a" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=0;" value="*" vertex="1">
+          <mxGeometry x="420" y="742" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m7b" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=0;" value="1" vertex="1">
+          <mxGeometry x="346" y="212" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m8a" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=0;" value="*" vertex="1">
+          <mxGeometry x="786" y="832" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="m8b" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=11;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=0;" value="1" vertex="1">
+          <mxGeometry x="1204" y="130" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="tit" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=16;fontColor=#333333;align=left;verticalAlign=middle;fontStyle=1;" value="Museum Booking Hub 3D – Diagramma delle classi del modello (package entity)" vertex="1">
+          <mxGeometry x="40" y="12" width="900" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg" parent="1" style="text;html=1;whiteSpace=wrap;fontSize=10;fontColor=#555555;align=left;verticalAlign=middle;fontStyle=0;" value="Freccia aperta: associazione navigabile · rombo pieno: composizione (cascade ALL, orphanRemoval) · tratteggio: dipendenza da un enum · get/set e costruttori generati da Lombok (@Getter, @Setter, @Builder). Sessione è una classe tecnica: userId senza associazione JPA." vertex="1">
+          <mxGeometry x="40" y="935" width="1160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" edge="1" parent="1" style="edgeStyle=none;html=1;rounded=0;strokeColor=#333333;strokeWidth=1.3;dashed=0;startArrow=none;startFill=0;endArrow=open;endFill=0;startSize=12;endSize=12;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="450" y="100" as="sourcePoint" />
+            <mxPoint x="340" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a2" edge="1" parent="1" style="edgeStyle=none;html=1;rounded=0;strokeColor=#333333;strokeWidth=1.3;dashed=0;startArrow=none;startFill=0;endArrow=open;endFill=0;startSize=12;endSize=12;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="780" y="100" as="sourcePoint" />
+            <mxPoint x="900" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a3" edge="1" parent="1" style="edgeStyle=none;html=1;rounded=0;strokeColor=#333333;strokeWidth=1.3;dashed=0;startArrow=diamondThin;startFill=1;endArrow=none;endFill=0;startSize=12;endSize=12;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="615" y="271" as="sourcePoint" />
+            <mxPoint x="615" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4" edge="1" parent="1" style="edgeStyle=none;html=1;rounded=0;strokeColor=#333333;strokeWidth=1.3;dashed=0;startArrow=none;startFill=0;endArrow=open;endFill=0;startSize=12;endSize=12;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="780" y="480" as="sourcePoint" />
+            <mxPoint x="900" y="207" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="850" y="480" />
+              <mxPoint x="850" y="207" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a5" edge="1" parent="1" style="edgeStyle=none;html=1;rounded=0;strokeColor=#333333;strokeWidth=1.3;dashed=0;startArrow=diamondThin;startFill=1;endArrow=none;endFill=0;startSize=12;endSize=12;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1050" y="237" as="sourcePoint" />
+            <mxPoint x="1050" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a6" edge="1" parent="1" style="edgeStyle=none;html=1;rounded=0;strokeColor=#333333;strokeWidth=1.3;dashed=0;startArrow=none;startFill=0;endArrow=open;endFill=0;startSize=12;endSize=12;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="780" y="604" as="sourcePoint" />
+            <mxPoint x="900" y="663" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="830" y="604" />
+              <mxPoint x="830" y="663" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a7" edge="1" parent="1" style="edgeStyle=none;html=1;rounded=0;strokeColor=#333333;strokeWidth=1.3;dashed=0;startArrow=none;startFill=0;endArrow=open;endFill=0;startSize=12;endSize=12;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="450" y="760" as="sourcePoint" />
+            <mxPoint x="340" y="230" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="400" y="760" />
+              <mxPoint x="400" y="230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a8" edge="1" parent="1" style="edgeStyle=none;html=1;rounded=0;strokeColor=#333333;strokeWidth=1.3;dashed=0;startArrow=none;startFill=0;endArrow=open;endFill=0;startSize=12;endSize=12;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="780" y="850" as="sourcePoint" />
+            <mxPoint x="1200" y="148" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1220" y="850" />
+              <mxPoint x="1220" y="148" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d1" edge="1" parent="1" style="edgeStyle=none;html=1;rounded=0;strokeColor=#888888;strokeWidth=1.3;dashed=1;startArrow=none;startFill=0;endArrow=open;endFill=0;startSize=12;endSize=12;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="237" as="sourcePoint" />
+            <mxPoint x="110" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d2" edge="1" parent="1" style="edgeStyle=none;html=1;rounded=0;strokeColor=#888888;strokeWidth=1.3;dashed=1;startArrow=none;startFill=0;endArrow=open;endFill=0;startSize=12;endSize=12;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="270" y="237" as="sourcePoint" />
+            <mxPoint x="270" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="d3" edge="1" parent="1" style="edgeStyle=none;html=1;rounded=0;strokeColor=#888888;strokeWidth=1.3;dashed=1;startArrow=none;startFill=0;endArrow=open;endFill=0;startSize=12;endSize=12;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="450" y="221" as="sourcePoint" />
+            <mxPoint x="130" y="720" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="420" y="221" />
+              <mxPoint x="420" y="700" />
+              <mxPoint x="130" y="700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
