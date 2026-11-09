@@ -1,0 +1,30 @@
+package com.museumhub.booking.dto;
+
+import com.museumhub.booking.entity.Ruolo;
+import com.museumhub.booking.entity.StatoAccount;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
+/** Modifica di un utente. La password e' facoltativa: se omessa o vuota resta quella attuale. */
+public record UserUpdateRequest(
+        @NotBlank(message = "Il nome è obbligatorio")
+        @Size(max = 100, message = "Il nome può avere al massimo 100 caratteri")
+        String nome,
+
+        @NotBlank(message = "L'email è obbligatoria")
+        @Email(message = "Formato email non valido")
+        @Size(max = 150, message = "L'email può avere al massimo 150 caratteri")
+        String email,
+
+        @Pattern(regexp = "^$|.{8,72}", message = "La password deve avere tra 8 e 72 caratteri")
+        String password,
+
+        @NotNull(message = "Il ruolo è obbligatorio")
+        Ruolo ruolo,
+
+        @NotNull(message = "Lo stato è obbligatorio")
+        StatoAccount stato) {
+}
