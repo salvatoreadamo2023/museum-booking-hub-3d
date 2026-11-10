@@ -1,5 +1,6 @@
 package com.museumhub.booking.service;
 
+import com.museumhub.booking.dto.PaginaResponse;
 import com.museumhub.booking.dto.UserCreateRequest;
 import com.museumhub.booking.dto.UserResponse;
 import com.museumhub.booking.dto.UserUpdateRequest;
@@ -9,6 +10,7 @@ import com.museumhub.booking.exception.ApiException;
 import com.museumhub.booking.repository.FeedbackRepository;
 import com.museumhub.booking.repository.ReservationRepository;
 import com.museumhub.booking.repository.UserRepository;
+import com.museumhub.booking.util.Paginazione;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -30,8 +32,10 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional(readOnly = true)
-    public List<UserResponse> elenca() {
-        return userRepository.findAll(Sort.by("id")).stream().map(this::toResponse).toList();
+    public PaginaResponse<UserResponse> elenca(int pagina, int dimensione) {
+        // ordine per id: stabile tra una pagina e l'altra
+        return PaginaResponse.di(
+                userRepository.findAll(Paginazione.richiesta(pagina, dimensione, Sort.by("id"))), this::toResponse);
     }
 
     @Transactional

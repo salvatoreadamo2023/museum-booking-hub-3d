@@ -80,8 +80,8 @@ class FeedbackControllerTest extends ApiTestBase {
 
         mockMvc.perform(get("/api/feedback").header(AUTH, bearer(tokenAdmin())))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].commento").value("Visita bellissima"));
+                .andExpect(jsonPath("$.contenuto", hasSize(1)))
+                .andExpect(jsonPath("$.contenuto[0].commento").value("Visita bellissima"));
         mockMvc.perform(get("/api/feedback").header(AUTH, bearer(token)))
                 .andExpect(status().isForbidden());
     }

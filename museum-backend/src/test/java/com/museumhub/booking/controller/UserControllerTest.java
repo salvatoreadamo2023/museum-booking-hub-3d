@@ -37,10 +37,11 @@ class UserControllerTest extends ApiTestBase {
         registra("a@test.it");
         mockMvc.perform(get("/api/users").header(AUTH, bearer(tokenAdmin())))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].email").value("admin@test.it"))
-                .andExpect(jsonPath("$[0].password").doesNotExist())
-                .andExpect(jsonPath("$[0].passwordHash").doesNotExist());
+                .andExpect(jsonPath("$.contenuto", hasSize(2)))
+                .andExpect(jsonPath("$.totaleElementi").value(2))
+                .andExpect(jsonPath("$.contenuto[0].email").value("admin@test.it"))
+                .andExpect(jsonPath("$.contenuto[0].password").doesNotExist())
+                .andExpect(jsonPath("$.contenuto[0].passwordHash").doesNotExist());
     }
 
     @Test
@@ -117,7 +118,7 @@ class UserControllerTest extends ApiTestBase {
         mockMvc.perform(delete("/api/users/" + id).header(AUTH, bearer(tokenAdmin())))
                 .andExpect(status().isNoContent());
         mockMvc.perform(get("/api/users").header(AUTH, bearer(tokenAdmin())))
-                .andExpect(jsonPath("$", hasSize(1)));
+                .andExpect(jsonPath("$.contenuto", hasSize(1)));
     }
 
     @Test

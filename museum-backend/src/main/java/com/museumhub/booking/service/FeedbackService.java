@@ -2,6 +2,7 @@ package com.museumhub.booking.service;
 
 import com.museumhub.booking.dto.FeedbackRequest;
 import com.museumhub.booking.dto.FeedbackResponse;
+import com.museumhub.booking.dto.PaginaResponse;
 import com.museumhub.booking.entity.Feedback;
 import com.museumhub.booking.entity.Tour;
 import com.museumhub.booking.entity.User;
@@ -10,6 +11,7 @@ import com.museumhub.booking.repository.FeedbackRepository;
 import com.museumhub.booking.repository.ReservationRepository;
 import com.museumhub.booking.repository.TourRepository;
 import com.museumhub.booking.repository.UserRepository;
+import com.museumhub.booking.util.Paginazione;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -18,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -57,11 +58,11 @@ public class FeedbackService {
     }
 
     @Transactional(readOnly = true)
-    public List<FeedbackResponse> elenca() {
+    public PaginaResponse<FeedbackResponse> elenca(int pagina, int dimensione) {
+        // dal piu' recente; l'id nell'ordine tiene stabili le pagine anche a parita' di data
         Sort ordine = Sort.by(Sort.Order.desc("createdAt"), Sort.Order.desc("id"));
-        return feedbackRepository.findAll(ordine).stream()
-                .map(f -> toResponse(f, f.getUser().getNome()))
-                .toList();
+        return PaginaResponse.di(feedbackRepository.findAllBy(Paginazione.richiesta(pagina, dimensione, ordine)),
+                f -> toResponse(f, f.getUser().getNome()));
     }
 
     private FeedbackResponse toResponse(Feedback f, String nomeUtente) {

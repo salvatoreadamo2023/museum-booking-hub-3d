@@ -1,5 +1,6 @@
 package com.museumhub.booking.controller;
 
+import com.museumhub.booking.dto.PaginaResponse;
 import com.museumhub.booking.dto.UserCreateRequest;
 import com.museumhub.booking.dto.UserResponse;
 import com.museumhub.booking.dto.UserUpdateRequest;
@@ -20,10 +21,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -35,9 +36,10 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    @Operation(summary = "[Admin] Elenco degli utenti")
-    public List<UserResponse> elenca() {
-        return userService.elenca();
+    @Operation(summary = "[Admin] Elenco degli utenti, paginato. Pagina da 0; dimensione da 1 a 100")
+    public PaginaResponse<UserResponse> elenca(@RequestParam(defaultValue = "0") int pagina,
+                                               @RequestParam(defaultValue = "20") int dimensione) {
+        return userService.elenca(pagina, dimensione);
     }
 
     @PostMapping

@@ -2,6 +2,7 @@ package com.museumhub.booking.controller;
 
 import com.museumhub.booking.dto.PostiResponse;
 import com.museumhub.booking.dto.TourRequest;
+import com.museumhub.booking.dto.PaginaResponse;
 import com.museumhub.booking.dto.TourResponse;
 import com.museumhub.booking.service.TourService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,6 +39,14 @@ public class TourController {
     public List<TourResponse> elenca(
             @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data) {
         return tourService.elenca(data);
+    }
+
+    @GetMapping("/gestione")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "[Admin] Itinerari paginati per la gestione. Pagina da 0; dimensione da 1 a 100")
+    public PaginaResponse<TourResponse> gestione(@RequestParam(defaultValue = "0") int pagina,
+                                                 @RequestParam(defaultValue = "20") int dimensione) {
+        return tourService.elencaPaginato(pagina, dimensione);
     }
 
     @GetMapping("/{id}/seats")

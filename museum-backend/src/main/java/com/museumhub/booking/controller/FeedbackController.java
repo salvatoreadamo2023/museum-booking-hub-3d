@@ -2,6 +2,7 @@ package com.museumhub.booking.controller;
 
 import com.museumhub.booking.dto.FeedbackRequest;
 import com.museumhub.booking.dto.FeedbackResponse;
+import com.museumhub.booking.dto.PaginaResponse;
 import com.museumhub.booking.security.UserPrincipal;
 import com.museumhub.booking.service.FeedbackService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,10 +17,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/feedback")
@@ -31,9 +32,10 @@ public class FeedbackController {
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "[Admin] Feedback ricevuti, dal piu' recente")
-    public List<FeedbackResponse> elenca() {
-        return feedbackService.elenca();
+    @Operation(summary = "[Admin] Feedback ricevuti, dal piu' recente, paginati. Pagina da 0; dimensione da 1 a 100")
+    public PaginaResponse<FeedbackResponse> elenca(@RequestParam(defaultValue = "0") int pagina,
+                                                   @RequestParam(defaultValue = "20") int dimensione) {
+        return feedbackService.elenca(pagina, dimensione);
     }
 
     @PostMapping

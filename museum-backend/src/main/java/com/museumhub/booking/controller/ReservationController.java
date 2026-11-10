@@ -1,5 +1,6 @@
 package com.museumhub.booking.controller;
 
+import com.museumhub.booking.dto.PaginaResponse;
 import com.museumhub.booking.dto.ReservationRequest;
 import com.museumhub.booking.dto.ReservationResponse;
 import com.museumhub.booking.dto.ReservationUpdateRequest;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,6 +39,15 @@ public class ReservationController {
     @Operation(summary = "Le proprie prenotazioni")
     public List<ReservationResponse> elenca(@Parameter(hidden = true) @AuthenticationPrincipal UserPrincipal principal) {
         return reservationService.elenca(principal.getUser());
+    }
+
+    @GetMapping("/registro")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Registro di tutte le prenotazioni, paginato (admin). Pagina da 0; dimensione da 1 a 100")
+    public PaginaResponse<ReservationResponse> registro(
+            @RequestParam(defaultValue = "0") int pagina,
+            @RequestParam(defaultValue = "20") int dimensione) {
+        return reservationService.registro(pagina, dimensione);
     }
 
     @PostMapping

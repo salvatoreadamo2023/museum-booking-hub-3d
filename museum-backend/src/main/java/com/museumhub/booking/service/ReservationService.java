@@ -1,5 +1,6 @@
 package com.museumhub.booking.service;
 
+import com.museumhub.booking.dto.PaginaResponse;
 import com.museumhub.booking.dto.ReservationRequest;
 import com.museumhub.booking.dto.ReservationResponse;
 import com.museumhub.booking.dto.ReservationUpdateRequest;
@@ -19,8 +20,11 @@ import com.museumhub.booking.repository.TariffaRepository;
 import com.museumhub.booking.repository.TourRepository;
 import com.museumhub.booking.repository.UserRepository;
 import com.museumhub.booking.util.Prezzi;
+import com.museumhub.booking.util.Paginazione;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,7 +58,7 @@ public class ReservationService {
     private final TariffaRepository tariffaRepository;
     private final UserRepository userRepository;
 
-    /** Le prenotazioni dell'utente che ha fatto la richiesta, dalla visita piu' recente. */
+    /** Le prenotazioni dell'utente che ha fatto la richiesta, dalla visita piu' recente (il registro completo per l'admin e' registro()). */
     @Transactional(readOnly = true)
     public List<ReservationResponse> elenca(User utente) {
         boolean admin = utente.getRuolo() == Ruolo.ADMIN;
@@ -62,6 +66,19 @@ public class ReservationService {
         return reservationRepository.findByUserIdOrderByDataVisitaDescOrarioDesc(utente.getId()).stream()
                 .map(r -> toResponse(r, admin, adesso))
                 .toList();
+    }
+
+    /**
+     * Registro di tutte le prenotazioni (admin), una pagina alla volta, dalla visita piu' recente. I parametri fuori
+     * intervallo vengono riportati nei limiti: pagina minima 0, dimensione tra 1 e 100. L'ordine comprende l'id
+     * per restare stabile tra una pagina e l'altra.
+     */
+    @Transactional(readOnly = true)
+    public PaginaResponse<ReservationResponse> registro(int pagina, int dimensione) {
+        Sort ordine = Sort.by(Sort.Order.desc("dataVisita"), Sort.Order.desc("orario"), Sort.Order.desc("id"));
+        Page<Reservation> risultato = reservationRepository.findAllBy(Paginazione.richiesta(pagina, dimensione, ordine));
+        LocalDateTime adesso = LocalDateTime.now();
+        return PaginaResponse.di(risultato, r -> toResponse(r, true, adesso));
     }
 
     @Transactional

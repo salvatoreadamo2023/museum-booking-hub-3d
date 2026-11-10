@@ -13,6 +13,8 @@ import com.museumhub.booking.repository.ReservationRepository;
 import com.museumhub.booking.repository.ReservationSeatRepository;
 import com.museumhub.booking.repository.TariffaRepository;
 import com.museumhub.booking.repository.TourRepository;
+import com.museumhub.booking.dto.PaginaResponse;
+import com.museumhub.booking.util.Paginazione;
 import com.museumhub.booking.util.Prezzi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -52,6 +54,16 @@ public class TourService {
         return tourRepository.findAll(Sort.by("id")).stream()
                 .map(t -> toResponse(t, giorno, tariffe))
                 .toList();
+    }
+
+    /** Itinerari per la gestione admin, una pagina alla volta (ordine per id), con i posti liberi di oggi. */
+    @Transactional(readOnly = true)
+    public PaginaResponse<TourResponse> elencaPaginato(int pagina, int dimensione) {
+        LocalDate oggi = LocalDate.now();
+        List<Tariffa> tariffe = tariffe();
+        return PaginaResponse.di(
+                tourRepository.findAll(Paginazione.richiesta(pagina, dimensione, Sort.by("id"))),
+                t -> toResponse(t, oggi, tariffe));
     }
 
     @Transactional
