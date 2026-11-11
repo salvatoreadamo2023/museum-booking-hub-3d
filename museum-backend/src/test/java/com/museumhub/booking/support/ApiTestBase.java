@@ -56,20 +56,26 @@ public abstract class ApiTestBase {
         return "Bearer " + token;
     }
 
-    /** Esegue il login e restituisce la risposta completa (corpo JSON con il token). */
+    /** Esegue il login e restituisce la risposta completa (corpo JSON e cookie). */
     private MockHttpServletResponse login(String email, String password) throws Exception {
         return mockMvc.perform(post("/api/auth/login").contentType(JSON)
                         .content("{\"email\":\"" + email + "\",\"password\":\"" + password + "\"}"))
                 .andReturn().getResponse();
     }
 
-    /** Token JWT contenuto nel corpo della risposta di login o registrazione. */
-    protected String token(MockHttpServletResponse risposta) throws Exception {
-        return JsonPath.read(risposta.getContentAsString(), "$.token");
+    /** Valore di un cookie impostato dalla risposta (header Set-Cookie), o null se assente. */
+    protected String cookie(MockHttpServletResponse risposta, String nome) {
+        for (String header : risposta.getHeaders("Set-Cookie")) {
+            if (header.startsWith(nome + "=")) {
+                int fine = header.indexOf(';');
+                return header.substring(nome.length() + 1, fine < 0 ? header.length() : fine);
+            }
+        }
+        return null;
     }
 
     protected String tokenAdmin() throws Exception {
-        return token(login("admin@test.it", "PasswordAdmin1"));
+        return cookie(login("admin@test.it", "PasswordAdmin1"), "mbh_access");
     }
 
     protected int idAdmin() throws Exception {
@@ -89,9 +95,9 @@ public abstract class ApiTestBase {
         return registraRisposta(email).getContentAsString();
     }
 
-    /** Registra un visitatore e restituisce il suo token di accesso (preso dal corpo della risposta). */
+    /** Registra un visitatore e restituisce il suo token di accesso (preso dal cookie). */
     protected String registra(String email) throws Exception {
-        return token(registraRisposta(email));
+        return cookie(registraRisposta(email), "mbh_access");
     }
 
     /** Crea l'itinerario di prova (capienza 10, fasce 09:30 e 11:00) e ne restituisce l'id. */

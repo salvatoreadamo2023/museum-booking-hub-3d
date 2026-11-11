@@ -71,7 +71,7 @@ class UserControllerTest extends ApiTestBase {
     @Test
     void sospendereUnUtenteBloccaSubitoLoroAccesso() throws Exception {
         MockHttpServletResponse registrazione = registraRisposta("a@test.it");
-        String token = token(registrazione);
+        String token = cookie(registrazione, "mbh_access");
         int id = JsonPath.read(registrazione.getContentAsString(), "$.id");
         mockMvc.perform(get("/api/tours").header(AUTH, bearer(token))).andExpect(status().isOk());
 

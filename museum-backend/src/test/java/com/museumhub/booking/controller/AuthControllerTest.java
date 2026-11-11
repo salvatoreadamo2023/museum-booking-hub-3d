@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.cookie;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -46,7 +47,8 @@ class AuthControllerTest {
         mockMvc.perform(post("/api/auth/login").contentType(MediaType.APPLICATION_JSON)
                         .content(json("admin@test.it", "PasswordAdmin1")))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.token").exists())
+                .andExpect(cookie().exists("mbh_access"))
+                .andExpect(jsonPath("$.token").doesNotExist())
                 .andExpect(jsonPath("$.ruolo").value("ADMIN"));
     }
 
@@ -74,7 +76,8 @@ class AuthControllerTest {
         mockMvc.perform(post("/api/auth/register").contentType(MediaType.APPLICATION_JSON)
                         .content(registrazione("Mario Rossi", "Mario@Test.it", "password123")))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.token").exists())
+                .andExpect(cookie().exists("mbh_access"))
+                .andExpect(jsonPath("$.token").doesNotExist())
                 .andExpect(jsonPath("$.ruolo").value("VISITATORE"))
                 .andExpect(jsonPath("$.email").value("mario@test.it"));
     }

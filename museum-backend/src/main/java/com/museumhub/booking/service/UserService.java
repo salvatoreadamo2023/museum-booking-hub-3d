@@ -9,6 +9,7 @@ import com.museumhub.booking.entity.User;
 import com.museumhub.booking.exception.ApiException;
 import com.museumhub.booking.repository.FeedbackRepository;
 import com.museumhub.booking.repository.ReservationRepository;
+import com.museumhub.booking.repository.SessioneRepository;
 import com.museumhub.booking.repository.UserRepository;
 import com.museumhub.booking.util.Paginazione;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final ReservationRepository reservationRepository;
     private final FeedbackRepository feedbackRepository;
+    private final SessioneRepository sessioneRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Transactional(readOnly = true)
@@ -72,6 +74,11 @@ public class UserService {
         user.setStato(r.stato());
         if (r.password() != null && !r.password().isBlank()) {
             user.setPasswordHash(passwordEncoder.encode(r.password()));
+            // se l'admin cambia la password di un altro utente, le sessioni gia' aperte di quell'utente si chiudono
+            // (la propria no, altrimenti l'admin verrebbe disconnesso mentre modifica se stesso)
+            if (!attoreId.equals(id)) {
+                sessioneRepository.deleteByUserId(id);
+            }
         }
         return toResponse(userRepository.save(user));
     }
@@ -86,6 +93,7 @@ public class UserService {
             throw new ApiException(HttpStatus.CONFLICT,
                     "L'utente ha prenotazioni o feedback: sospendilo invece di eliminarlo");
         }
+        sessioneRepository.deleteByUserId(id);
         userRepository.deleteById(id);
     }
 

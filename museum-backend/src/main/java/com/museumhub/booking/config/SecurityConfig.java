@@ -2,6 +2,8 @@ package com.museumhub.booking.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.museumhub.booking.dto.ErrorResponse;
+import com.museumhub.booking.repository.SessioneRepository;
+import com.museumhub.booking.security.CookieService;
 import com.museumhub.booking.security.CustomUserDetailsService;
 import com.museumhub.booking.security.JwtAuthenticationFilter;
 import com.museumhub.booking.security.JwtService;
@@ -40,21 +42,25 @@ public class SecurityConfig {
     private final JwtService jwtService;
     private final CustomUserDetailsService userDetailsService;
     private final ObjectMapper objectMapper;
+    private final SessioneRepository sessioneRepository;
+    private final CookieService cookieService;
 
     @Value("${app.cors.allowed-origins}")
     private List<String> allowedOrigins;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        JwtAuthenticationFilter jwtFilter = new JwtAuthenticationFilter(jwtService, userDetailsService);
+        JwtAuthenticationFilter jwtFilter = new JwtAuthenticationFilter(jwtService, userDetailsService, sessioneRepository, cookieService);
 
         http
-                // CSRF: il token viaggia nell'header Authorization, che il browser non invia da solo
+                // CSRF: il token e' in un cookie, ma SameSite=Strict impedisce al browser di inviarlo da altri siti
+                // e il CORS ammette solo l'origine del frontend; per questo non serve un token CSRF dedicato.
                 .csrf(csrf -> csrf.disable())
                 .cors(Customizer.withDefaults())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers("/api/auth/me").authenticated()
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated())
@@ -81,6 +87,9 @@ public class SecurityConfig {
         config.setAllowedOrigins(allowedOrigins);
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        // necessario perche' il browser invii i cookie nelle richieste cross-origin (frontend su altra porta);
+        // con le credenziali le origini devono essere esplicite, mai "*"
+        config.setAllowCredentials(true);
         config.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

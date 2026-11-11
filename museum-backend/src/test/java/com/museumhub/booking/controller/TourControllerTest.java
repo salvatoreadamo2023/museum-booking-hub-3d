@@ -32,19 +32,25 @@ class TourControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    /** Il token di accesso arriva nel corpo della risposta di login e registrazione. */
-    private String token(MockHttpServletResponse risposta) throws Exception {
-        return JsonPath.read(risposta.getContentAsString(), "$.token");
+    /** Il token di accesso viaggia nel cookie HttpOnly "mbh_access" impostato da login e registrazione. */
+    private String tokenDaCookie(MockHttpServletResponse risposta) {
+        for (String header : risposta.getHeaders("Set-Cookie")) {
+            if (header.startsWith("mbh_access=")) {
+                int fine = header.indexOf(';');
+                return header.substring("mbh_access=".length(), fine < 0 ? header.length() : fine);
+            }
+        }
+        throw new AssertionError("Cookie mbh_access assente");
     }
 
     private String tokenAdmin() throws Exception {
-        return token(mockMvc.perform(post("/api/auth/login").contentType(MediaType.APPLICATION_JSON)
+        return tokenDaCookie(mockMvc.perform(post("/api/auth/login").contentType(MediaType.APPLICATION_JSON)
                         .content("{\"email\":\"admin@test.it\",\"password\":\"PasswordAdmin1\"}"))
                 .andReturn().getResponse());
     }
 
     private String tokenVisitatore() throws Exception {
-        return token(mockMvc.perform(post("/api/auth/register").contentType(MediaType.APPLICATION_JSON)
+        return tokenDaCookie(mockMvc.perform(post("/api/auth/register").contentType(MediaType.APPLICATION_JSON)
                         .content("{\"nome\":\"Visitatore\",\"email\":\"visitatore@test.it\",\"password\":\"password123\"}"))
                 .andReturn().getResponse());
     }

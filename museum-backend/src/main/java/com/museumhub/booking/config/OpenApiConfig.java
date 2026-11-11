@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * Swagger UI: http://localhost:8080/swagger-ui/index.html. Per provare gli endpoint protetti esegui prima
- * POST /api/auth/login, copia il token dalla risposta e incollalo nel pulsante "Authorize".
+ * POST /api/auth/login da Swagger: il cookie di sessione viene poi inviato automaticamente dal browser.
  */
 @Configuration
 @OpenAPIDefinition(
