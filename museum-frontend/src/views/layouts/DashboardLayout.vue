@@ -19,6 +19,7 @@ async function esci() {
     // anche se il server non risponde si esce comunque dall'interfaccia
   }
   azzeraSessione()
+  azzeraPrenotazione() // chi entra dopo non deve trovare i posti scelti da chi è uscito
   router.push('/login')
 }
 </script>
@@ -30,7 +31,7 @@ async function esci() {
         <div style="margin-bottom: 28px">
           <div style="font-size: 1.6rem">🏛️</div>
           <h2 style="font-family: 'Lora', serif; font-size: 1.4rem; color: #1e293b">GALLERIA GEOLOGICA</h2>
-          <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; color: #b45309; letter-spacing: 1px">
+          <div style="font-size: 0.85rem; font-weight: 700; color: #b45309">
             Museum Dashboard
           </div>
         </div>
@@ -50,11 +51,11 @@ async function esci() {
           <div v-else>
             <div class="nav-group-title">Area Amministrazione</div>
             <ul class="nav-menu">
-              <li><RouterLink to="/admin/registro" class="nav-link" active-class="active">🗺️ Visite &amp; Registro</RouterLink></li>
               <li><RouterLink to="/admin/analytics" class="nav-link" active-class="active">📊 Analytics &amp; KPI</RouterLink></li>
-              <li><RouterLink to="/admin/gestione" class="nav-link" active-class="active">⚙️ Gestione Visite &amp; Capienze</RouterLink></li>
-              <li><RouterLink to="/admin/utenti" class="nav-link" active-class="active">👥 Amministrazione Utenti</RouterLink></li>
-              <li><RouterLink to="/admin/feedback" class="nav-link" active-class="active">💬 Guarda Feedback</RouterLink></li>
+              <li><RouterLink to="/admin/registro" class="nav-link" active-class="active">🗂️ Registro prenotazioni</RouterLink></li>
+              <li><RouterLink to="/admin/gestione" class="nav-link" active-class="active">⚙️ Itinerari e capienze</RouterLink></li>
+              <li><RouterLink to="/admin/utenti" class="nav-link" active-class="active">👥 Utenti</RouterLink></li>
+              <li><RouterLink to="/admin/feedback" class="nav-link" active-class="active">💬 Feedback</RouterLink></li>
               <li><RouterLink to="/admin/sistema" class="nav-link" active-class="active">🖥️ Prestazioni di sistema</RouterLink></li>
             </ul>
           </div>
@@ -64,8 +65,8 @@ async function esci() {
         <div style="display: flex; align-items: center; gap: 10px">
           <div class="avatar">{{ iniziali(session.user?.nome) }}</div>
           <div>
-            <div style="font-size: 0.82rem; font-weight: 700; color: #1e293b">{{ session.user?.nome }}</div>
-            <div style="font-size: 0.7rem; color: #64748b">{{ ruolo }}</div>
+            <div style="font-size: 0.95rem; font-weight: 700; color: #1e293b">{{ session.user?.nome }}</div>
+            <div style="font-size: 0.85rem; color: #475569">{{ ruolo }}</div>
           </div>
         </div>
         <button class="logout-btn" @click="esci">Esci</button>

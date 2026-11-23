@@ -13,8 +13,13 @@ const routes = [
       { path: 'mappa', name: 'mappa', component: () => import('@/views/visitor/MapView.vue'), meta: { ruolo: 'VISITATORE' } },
       { path: 'prenotazioni', name: 'prenotazioni', component: () => import('@/views/visitor/ReservationsView.vue'), meta: { ruolo: 'VISITATORE' } },
       { path: 'feedback', name: 'feedback', component: () => import('@/views/visitor/FeedbackView.vue'), meta: { ruolo: 'VISITATORE' } },
-      // Pagina provvisoria: l'area admin vera arriva nella fase 17
-      { path: 'admin/analytics', name: 'analytics', component: () => import('@/views/BenvenutoView.vue'), meta: { ruolo: 'ADMIN' } },
+      // Area amministrazione
+      { path: 'admin/analytics', name: 'analytics', component: () => import('@/views/admin/AnalyticsView.vue'), meta: { ruolo: 'ADMIN' } },
+      { path: 'admin/registro', name: 'registro', component: () => import('@/views/admin/RegistryView.vue'), meta: { ruolo: 'ADMIN' } },
+      { path: 'admin/gestione', name: 'gestione', component: () => import('@/views/admin/ToursAdminView.vue'), meta: { ruolo: 'ADMIN' } },
+      { path: 'admin/utenti', name: 'utenti', component: () => import('@/views/admin/UsersAdminView.vue'), meta: { ruolo: 'ADMIN' } },
+      { path: 'admin/feedback', name: 'feedback-admin', component: () => import('@/views/admin/FeedbackAdminView.vue'), meta: { ruolo: 'ADMIN' } },
+      { path: 'admin/sistema', name: 'sistema', component: () => import('@/views/admin/SystemView.vue'), meta: { ruolo: 'ADMIN' } },
     ],
   },
   { path: '/:pathMatch(.*)*', redirect: '/' },
