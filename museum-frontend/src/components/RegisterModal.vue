@@ -30,7 +30,7 @@ async function registra() {
 
 <template>
   <BaseModal title="Crea Profilo" accent="#0f766e" title-size="1.6rem" @close="emit('close')">
-    <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 24px; margin-top: -6px">
+    <p style="font-size: 0.95rem; color: #475569; margin-bottom: 24px; margin-top: -6px">
       Registrati per riservare le tue visite e i posti 3D.
     </p>
     <form @submit.prevent="registra">

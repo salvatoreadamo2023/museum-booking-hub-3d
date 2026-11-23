@@ -79,12 +79,12 @@ function vaiAllaMappa(tour) {
 
     <div v-for="(tour, i) in tours" :key="tour.id" class="card" :style="{ borderLeft: `4px solid ${COLORI[i % COLORI.length]}` }">
       <h3 style="font-family: 'Lora', serif; font-size: 1.4rem; margin-bottom: 8px">{{ i + 1 }}. {{ tour.titolo }}</h3>
-      <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 8px">{{ tour.descrizione }}</p>
-      <p style="font-size: 0.78rem; color: #64748b; margin-bottom: 20px">
+      <p style="font-size: 0.95rem; color: #475569; margin-bottom: 8px">{{ tour.descrizione }}</p>
+      <p style="font-size: 0.9rem; color: #475569; margin-bottom: 20px">
         {{ tour.durataMin }} min ·
         <span v-for="(t, k) in tour.tariffe" :key="t.id">{{ k ? ' · ' : '' }}{{ t.nome }} {{ formatEuro(t.prezzo) }}</span>
       </p>
-      <div style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #334155; margin-bottom: 10px">Seleziona una fascia oraria:</div>
+      <div style="font-size: 0.92rem; font-weight: 700; color: #1e293b; margin-bottom: 10px">Scegli una fascia oraria:</div>
       <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap">
         <button
           v-for="slot in tour.orari"

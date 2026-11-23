@@ -75,7 +75,7 @@ function registrato() {
           <div class="field"><label for="login-password">Password</label><input id="login-password" v-model="password" type="password" placeholder="••••••••" required /></div>
           <button type="submit" class="btn-submit" :disabled="inCorso">ACCEDI ORA</button>
         </form>
-        <div style="text-align: center; margin-top: 16px; font-size: 0.82rem; color: #64748b">
+        <div style="text-align: center; margin-top: 16px; font-size: 0.92rem; color: #475569">
           Non hai ancora un account?
           <span style="color: #0f766e; font-weight: 700; cursor: pointer" @click="mostraRegistrazione = true">Registrati qui</span>
         </div>

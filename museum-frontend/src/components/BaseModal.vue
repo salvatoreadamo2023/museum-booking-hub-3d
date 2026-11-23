@@ -28,7 +28,7 @@ onMounted(() => requestAnimationFrame(() => (attiva.value = true)))
       >
         {{ title }}
       </h2>
-      <p v-if="subtitle" style="font-size: 0.82rem; color: #64748b; margin-bottom: 20px">{{ subtitle }}</p>
+      <p v-if="subtitle" style="font-size: 0.95rem; color: #475569; margin-bottom: 20px">{{ subtitle }}</p>
       <slot />
     </div>
   </div>
