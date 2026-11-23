@@ -8,8 +8,12 @@ const routes = [
     component: () => import('@/views/layouts/DashboardLayout.vue'),
     children: [
       { path: '', redirect: () => homePath() },
-      // Pagine provvisorie: le aree vere del visitatore e dell'admin arrivano nelle fasi 16 e 17
-      { path: 'visite', name: 'visite', component: () => import('@/views/BenvenutoView.vue'), meta: { ruolo: 'VISITATORE' } },
+      // Area visitatore
+      { path: 'visite', name: 'visite', component: () => import('@/views/visitor/ToursView.vue'), meta: { ruolo: 'VISITATORE' } },
+      { path: 'mappa', name: 'mappa', component: () => import('@/views/visitor/MapView.vue'), meta: { ruolo: 'VISITATORE' } },
+      { path: 'prenotazioni', name: 'prenotazioni', component: () => import('@/views/visitor/ReservationsView.vue'), meta: { ruolo: 'VISITATORE' } },
+      { path: 'feedback', name: 'feedback', component: () => import('@/views/visitor/FeedbackView.vue'), meta: { ruolo: 'VISITATORE' } },
+      // Pagina provvisoria: l'area admin vera arriva nella fase 17
       { path: 'admin/analytics', name: 'analytics', component: () => import('@/views/BenvenutoView.vue'), meta: { ruolo: 'ADMIN' } },
     ],
   },

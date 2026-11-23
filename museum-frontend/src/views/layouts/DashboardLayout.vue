@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { RouterLink, RouterView, useRoute, useRouter } from 'vue-router'
 import { authService } from '@/services/authService'
 import { azzeraSessione, isAdmin, session } from '@/store/session'
+import { azzera as azzeraPrenotazione } from '@/store/booking'
 import { iniziali } from '@/utils/formatters'
 
 const route = useRoute()

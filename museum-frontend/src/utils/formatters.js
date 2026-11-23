@@ -54,8 +54,8 @@ export function stelle(voto) {
   return '★'.repeat(voto) + '☆'.repeat(5 - voto)
 }
 
-/** "2 Omini (#2, #4)" */
+/** "n. 2 posti (2, 4)" */
 export function descrizionePosti(posti) {
-  const numeri = posti.map((p) => `#${p.numero}`).join(', ')
-  return `${posti.length} ${posti.length === 1 ? 'Omino' : 'Omini'} (${numeri})`
+  const numeri = posti.map((p) => p.numero).join(', ')
+  return `n. ${posti.length} ${posti.length === 1 ? 'posto' : 'posti'} (${numeri})`
 }
