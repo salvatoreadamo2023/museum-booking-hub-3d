@@ -64,12 +64,11 @@ public class AuthService {
     @Transactional
     public Esito login(LoginRequest request, String indirizzoIp) {
         String email = normalizza(request.email());
-        tentativi.verifica(indirizzoIp, email);
+        tentativi.prenota(indirizzoIp, email);
 
         Optional<User> trovato = userRepository.findByEmail(email)
                 .filter(u -> passwordEncoder.matches(request.password(), u.getPasswordHash()));
         if (trovato.isEmpty()) {
-            tentativi.fallito(indirizzoIp, email);
             throw new ApiException(HttpStatus.UNAUTHORIZED, "Credenziali non valide");
         }
         tentativi.riuscito(indirizzoIp, email);

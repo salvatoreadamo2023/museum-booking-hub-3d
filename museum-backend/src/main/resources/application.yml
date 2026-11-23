@@ -19,6 +19,12 @@ spring:
 
 server:
   port: ${SERVER_PORT:8080}
+  # Dietro nginx l'IP del visitatore arriva in X-Forwarded-For. Lo si accetta solo se la richiesta viene da un proxy
+  # sulla stessa macchina: chiunque altro potrebbe scriverci un IP inventato per aggirare i limiti per IP.
+  forward-headers-strategy: native
+  tomcat:
+    remoteip:
+      internal-proxies: 127\.0\.0\.1|0:0:0:0:0:0:0:1
 
 logging:
   level:

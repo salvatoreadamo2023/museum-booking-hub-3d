@@ -48,33 +48,33 @@ public class LoginAttemptService {
         this.perIp = new LimitatoreAFinestra(MASSIMO_CHIAVI, durata);
     }
 
-    /** Lancia 429 se l'IP o la coppia IP + email hanno esaurito i tentativi. */
-    public void verifica(String indirizzo, String email) {
+    /**
+     * Prenota un tentativo prima di controllare la password: lo conta subito e lancia 429 se l'IP o la coppia
+     * IP + email hanno esaurito i tentativi. Contare prima e non dopo l'errore chiude la corsa delle richieste
+     * in parallelo: cento login simultanei non possono piu' passare tutti il controllo prima che arrivi il
+     * primo errore. Se poi la password e' giusta, {@link #riuscito} restituisce il tentativo.
+     */
+    public void prenota(String indirizzo, String email) {
         String ip = IndirizzoRete.chiave(indirizzo);
         Instant ora = orologio.instant();
-        if (perIp.conteggio(ip, ora) >= massimoPerIp) {
+        if (!perIp.consumaSeSotto(ip, ora, massimoPerIp)) {
             throw troppi(perIp.minutiAllaFine(ip, ora));
         }
         String coppia = coppia(ip, email);
-        if (perAccount.conteggio(coppia, ora) >= massimoPerAccount) {
+        if (!perAccount.consumaSeSotto(coppia, ora, massimoPerAccount)) {
+            perIp.restituisci(ip, ora); // il tentativo non e' stato fatto: non va contato all'IP
             throw troppi(perAccount.minutiAllaFine(coppia, ora));
         }
     }
 
-    public void fallito(String indirizzo, String email) {
-        String ip = IndirizzoRete.chiave(indirizzo);
-        Instant ora = orologio.instant();
-        perIp.incrementa(ip, ora);
-        perAccount.incrementa(coppia(ip, email), ora);
-    }
-
     /**
-     * Un accesso riuscito azzera solo il contatore della coppia. Il contatore dell'IP resta: altrimenti
-     * basterebbe entrare ogni tanto con il proprio account per ripartire da zero con i tentativi.
+     * Password giusta: la coppia riparte da zero e all'IP torna il tentativo prenotato. Gli errori gia' fatti
+     * dall'IP restano: altrimenti basterebbe entrare ogni tanto con il proprio account per azzerarli.
      */
     public void riuscito(String indirizzo, String email) {
         String ip = IndirizzoRete.chiave(indirizzo);
         perAccount.azzera(coppia(ip, email));
+        perIp.restituisci(ip, orologio.instant());
     }
 
     int chiaviInMemoria() {

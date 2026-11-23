@@ -39,11 +39,10 @@ public class RegistrationLimitService {
     public void consuma(String indirizzo) {
         String ip = IndirizzoRete.chiave(indirizzo);
         Instant ora = orologio.instant();
-        if (perIp.conteggio(ip, ora) >= massimo) {
+        if (!perIp.consumaSeSotto(ip, ora, massimo)) { // controllo e conteggio atomici
             long minuti = perIp.minutiAllaFine(ip, ora);
             throw new ApiException(HttpStatus.TOO_MANY_REQUESTS,
                     "Troppe registrazioni da questa rete: riprova tra " + minuti + (minuti == 1 ? " minuto" : " minuti"));
         }
-        perIp.incrementa(ip, ora);
     }
 }

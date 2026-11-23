@@ -56,6 +56,27 @@ final class LimitatoreAFinestra {
         return ++f.conteggio;
     }
 
+    /**
+     * Controllo e conteggio in un solo passo atomico: se la chiave e' sotto il massimo registra l'evento e
+     * restituisce true, altrimenti non tocca nulla e restituisce false. Con due chiamate separate (prima
+     * leggo, poi incremento) due richieste simultanee potrebbero leggere lo stesso valore e superare la soglia.
+     */
+    synchronized boolean consumaSeSotto(String chiave, Instant ora, int massimo) {
+        if (conteggio(chiave, ora) >= massimo) {
+            return false;
+        }
+        incrementa(chiave, ora);
+        return true;
+    }
+
+    /** Annulla un evento registrato prima (per esempio un tentativo di login che poi e' andato a buon fine). */
+    synchronized void restituisci(String chiave, Instant ora) {
+        Finestra f = finestre.get(chiave);
+        if (f != null && !scaduta(f, ora) && f.conteggio > 0) {
+            f.conteggio--;
+        }
+    }
+
     /** Minuti che mancano alla fine della finestra della chiave, arrotondati per eccesso (almeno 1). */
     synchronized long minutiAllaFine(String chiave, Instant ora) {
         Finestra f = finestre.get(chiave);
