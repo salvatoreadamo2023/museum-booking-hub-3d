@@ -9,6 +9,9 @@ Login e registrazione impostano due cookie `HttpOnly` e `SameSite=Strict` (e `Se
 (sessione, 7 giorni). Il token non è nel corpo della risposta. Il browser invia il cookie da solo; un client diverso (script, Swagger) può usare anche
 `Authorization: Bearer <token>`. Tutte le API, tranne `/api/auth/login`, `/register`, `/refresh` e `/logout`, richiedono un token di accesso valido.
 
+Limiti contro gli abusi (risposta `429` con il minuto in cui riprovare): 5 errori di login per la stessa email dallo stesso IP e 30 errori in
+totale per IP ogni 15 minuti; 20 registrazioni per IP ogni ora. Le soglie si cambiano dal file `.env` senza ricompilare.
+
 Ruolo e stato dell'utente sono riletti dal database a ogni richiesta: un account sospeso perde subito l'accesso. Il logout revoca la sessione.
 
 Ruoli: `VISITATORE` e `ADMIN`.

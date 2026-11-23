@@ -34,3 +34,10 @@ app:
     secret: ${JWT_SECRET}
   cors:
     allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+  # difesa da forza bruta e abusi (valori per singolo IP, finestre in minuti)
+  security:
+    login-max-attempts: ${LOGIN_MAX_ATTEMPTS:5}
+    login-max-failures-per-ip: ${LOGIN_MAX_FAILURES_PER_IP:30}
+    login-lock-minutes: ${LOGIN_LOCK_MINUTES:15}
+    register-max-per-ip: ${REGISTER_MAX_PER_IP:20}
+    register-window-minutes: ${REGISTER_WINDOW_MINUTES:60}

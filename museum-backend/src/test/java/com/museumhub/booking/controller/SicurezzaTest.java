@@ -46,6 +46,15 @@ class SicurezzaTest extends ApiTestBase {
                 .andReturn().getResponse().getStatus();
     }
 
+    private int loginDa(String ip, String email, String password) throws Exception {
+        return mockMvc.perform(post("/api/auth/login").contentType(JSON).content(loginJson(email, password))
+                        .with(richiesta -> {
+                            richiesta.setRemoteAddr(ip);
+                            return richiesta;
+                        }))
+                .andReturn().getResponse().getStatus();
+    }
+
     private String headerCookie(MockHttpServletResponse risposta, String nome) {
         for (String header : risposta.getHeaders("Set-Cookie")) {
             if (header.startsWith(nome + "=")) {
@@ -217,6 +226,24 @@ class SicurezzaTest extends ApiTestBase {
             assertEquals(401, login("azzera@test.it", "sbagliata"));
         }
         assertEquals(200, login("azzera@test.it", "password123"));
+    }
+
+    @Test
+    void ilBloccoDiUnaCoppiaNonColpisceLaStessaEmailDaUnAltraRete() throws Exception {
+        registraRisposta("reti@test.it");
+        for (int i = 0; i < 5; i++) {
+            assertEquals(401, loginDa("10.0.0.1", "reti@test.it", "sbagliata"));
+        }
+        assertEquals(429, loginDa("10.0.0.1", "reti@test.it", "password123"));
+        // il vero titolare, da casa sua, entra lo stesso
+        assertEquals(200, loginDa("10.0.0.2", "reti@test.it", "password123"));
+    }
+
+    @Test
+    void emailEPasswordTroppoLungheNelLoginSonoRespinteConCodice400() throws Exception {
+        String emailLunga = "a".repeat(145) + "@test.it"; // 153 caratteri
+        assertEquals(400, login(emailLunga, "password123"));
+        assertEquals(400, login("lunga@test.it", "x".repeat(73)));
     }
 
     @Test

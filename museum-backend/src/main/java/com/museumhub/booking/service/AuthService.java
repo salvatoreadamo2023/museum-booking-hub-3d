@@ -12,6 +12,7 @@ import com.museumhub.booking.repository.SessioneRepository;
 import com.museumhub.booking.repository.UserRepository;
 import com.museumhub.booking.security.JwtService;
 import com.museumhub.booking.security.LoginAttemptService;
+import com.museumhub.booking.security.RegistrationLimitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,10 +37,12 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final LoginAttemptService tentativi;
+    private final RegistrationLimitService registrazioni;
 
-    /** Registrazione pubblica: crea sempre un VISITATORE attivo e lo fa entrare subito. */
+    /** Registrazione pubblica: crea sempre un VISITATORE attivo e lo fa entrare subito. Limitata per IP. */
     @Transactional
-    public Esito register(RegisterRequest request) {
+    public Esito register(RegisterRequest request, String indirizzoIp) {
+        registrazioni.consuma(indirizzoIp);
         String email = normalizza(request.email());
         if (userRepository.existsByEmail(email)) {
             throw new ApiException(HttpStatus.CONFLICT, "Email già registrata");
@@ -55,22 +58,21 @@ public class AuthService {
     }
 
     /**
-     * Accesso con email e password. I tentativi errati sono limitati per coppia indirizzo IP + email: superata
-     * la soglia, l'accesso e' bloccato per qualche minuto anche con la password giusta (HTTP 429).
+     * Accesso con email e password. I tentativi errati sono limitati per coppia indirizzo IP + email e, in totale,
+     * per indirizzo IP: superata una delle soglie l'accesso e' bloccato per qualche minuto (HTTP 429).
      */
     @Transactional
     public Esito login(LoginRequest request, String indirizzoIp) {
         String email = normalizza(request.email());
-        String chiave = indirizzoIp + "|" + email;
-        tentativi.verifica(chiave);
+        tentativi.verifica(indirizzoIp, email);
 
         Optional<User> trovato = userRepository.findByEmail(email)
                 .filter(u -> passwordEncoder.matches(request.password(), u.getPasswordHash()));
         if (trovato.isEmpty()) {
-            tentativi.fallito(chiave);
+            tentativi.fallito(indirizzoIp, email);
             throw new ApiException(HttpStatus.UNAUTHORIZED, "Credenziali non valide");
         }
-        tentativi.riuscito(chiave);
+        tentativi.riuscito(indirizzoIp, email);
 
         User user = trovato.get();
         if (user.getStato() != StatoAccount.ATTIVO) {

@@ -62,8 +62,9 @@ public class DataInitializer implements CommandLineRunner {
         if (userRepository.existsByEmail(adminEmail)) {
             return;
         }
-        if (adminPassword == null || adminPassword.length() < 8) {
-            throw new IllegalStateException("ADMIN_PASSWORD mancante o più corta di 8 caratteri nel file .env");
+        if (adminPassword == null || adminPassword.length() < 8 || adminPassword.length() > 72) {
+            // stessi limiti della registrazione e del login: oltre 72 caratteri l'admin non potrebbe piu' entrare
+            throw new IllegalStateException("ADMIN_PASSWORD mancante o non tra 8 e 72 caratteri nel file .env");
         }
         userRepository.save(User.builder()
                 .nome(adminNome)

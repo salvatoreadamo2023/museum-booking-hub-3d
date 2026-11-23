@@ -46,8 +46,9 @@ public class AuthController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Registrazione di un nuovo visitatore; imposta i cookie HttpOnly di sessione")
-    public AuthResponse register(@Valid @RequestBody RegisterRequest request, HttpServletResponse response) {
-        AuthService.Esito esito = authService.register(request);
+    public AuthResponse register(@Valid @RequestBody RegisterRequest request, HttpServletRequest http,
+                                 HttpServletResponse response) {
+        AuthService.Esito esito = authService.register(request, http.getRemoteAddr());
         impostaCookie(response, esito);
         return esito.utente();
     }

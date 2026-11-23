@@ -18,3 +18,7 @@ app:
     secret: chiave-solo-per-i-test-lunga-almeno-32-caratteri
   cors:
     allowed-origins: http://localhost:5173
+  # nei test tutte le richieste MockMvc arrivano da 127.0.0.1: i tetti per IP si provano a parte (unit test)
+  security:
+    login-max-failures-per-ip: 10000
+    register-max-per-ip: 10000
