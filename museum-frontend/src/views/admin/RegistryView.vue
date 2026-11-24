@@ -51,7 +51,7 @@ async function salvata() {
           </thead>
           <tbody>
             <tr v-for="p in prenotazioni" :key="p.id">
-              <td><strong>{{ p.codice }}</strong></td>
+              <td><strong class="codice">{{ p.codice }}</strong></td>
               <td>{{ p.utenteNome }}<br /><span class="testo-secondario">{{ p.utenteEmail }}</span></td>
               <td>{{ p.tour }}</td>
               <td>{{ formatData(p.data) }}</td>

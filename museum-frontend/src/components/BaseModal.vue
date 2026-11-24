@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 // Finestra modale con lo stile del prototipo. Il genitore la monta con v-if e la chiude all'evento "close".
 defineProps({
@@ -8,16 +8,27 @@ defineProps({
   accent: { type: String, default: '#0f766e' },
   titleSize: { type: String, default: '1.5rem' },
 })
-defineEmits(['close'])
+const emit = defineEmits(['close'])
 
 const attiva = ref(false)
-onMounted(() => requestAnimationFrame(() => (attiva.value = true)))
+const scheda = ref(null)
+
+// Esc chiude la finestra, come ci si aspetta da qualunque finestra di dialogo
+const conTastiera = (e) => e.key === 'Escape' && emit('close')
+
+onMounted(() => {
+  requestAnimationFrame(() => (attiva.value = true))
+  document.addEventListener('keydown', conTastiera)
+  // il cursore va da solo sul primo campo, così si può scrivere subito
+  scheda.value?.querySelector('input, select, textarea')?.focus()
+})
+onBeforeUnmount(() => document.removeEventListener('keydown', conTastiera))
 </script>
 
 <template>
-  <div class="modal-overlay" :class="{ active: attiva }">
-    <div class="modal-card" :style="{ borderTopColor: accent }">
-      <button type="button" class="modal-close" @click="$emit('close')">&times;</button>
+  <div class="modal-overlay" :class="{ active: attiva }" @mousedown.self="emit('close')">
+    <div ref="scheda" class="modal-card" role="dialog" aria-modal="true" :aria-label="title" :style="{ borderTopColor: accent }">
+      <button type="button" class="modal-close" @click="emit('close')">&times;</button>
       <h2
         :style="{
           fontFamily: `'Lora', serif`,

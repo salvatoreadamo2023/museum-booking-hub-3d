@@ -7,6 +7,7 @@ import { messaggioErrore } from '@/services/api'
 import { iniziaPrenotazione } from '@/store/booking'
 import { formatEuro, oggiIso, oraAttuale } from '@/utils/formatters'
 import { precaricaSala } from '@/sala3d/precarica'
+import { session } from '@/store/session'
 
 const router = useRouter()
 
@@ -69,6 +70,14 @@ function vaiAllaMappa(tour) {
   <section class="page-section active">
     <PageHeader title="Itinerari & Fasce Orarie" subtitle="Scegli la data e seleziona una fascia oraria per accedere alla Mappa 3D e riservare i posti" />
 
+    <div class="benvenuto">
+      <div style="font-size: 2rem" aria-hidden="true">🏛️</div>
+      <div>
+        <strong>Ciao {{ session.user?.nome?.split(' ')[0] }}, che cosa visitiamo?</strong><br />
+        <span>Scegli il giorno, poi la fascia oraria: nella sala 3D sceglierai i posti.</span>
+      </div>
+    </div>
+
     <div class="field date-field">
       <label>Data della visita</label>
       <input v-model="data" type="date" :min="oggi" required />
@@ -98,7 +107,7 @@ function vaiAllaMappa(tour) {
         </button>
       </div>
       <div v-if="scelta.tourId === tour.id">
-        <button class="btn-action" :style="{ background: COLORI[i % COLORI.length] }" @click="vaiAllaMappa(tour)">VAI ALLA MAPPA 3D →</button>
+        <button class="btn-action" :style="{ background: COLORI[i % COLORI.length] }" @click="vaiAllaMappa(tour)">Vai alla sala 3D →</button>
       </div>
     </div>
   </section>

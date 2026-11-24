@@ -4,6 +4,9 @@
   padding: 0;
 }
 
+/* Testo base a 18px invece di 16: tutte le misure in rem crescono insieme (+12,5%) */
+html { font-size: 112.5%; }
+
 body {
   font-family: 'Inter', sans-serif;
   line-height: 1.5;
@@ -389,3 +392,126 @@ a.nav-link { text-decoration: none; }
   .kpi-row { grid-template-columns: 1fr; }
 }
 .tabella-scorrevole strong { white-space: nowrap; }
+
+/* ==========================================================
+   RITOCCHI GRAFICI (anteprima)
+   Un solo stile per tutto: angoli morbidi, ombre leggere, sfondo caldo da museo.
+   ========================================================== */
+:root {
+  --raggio: 10px;
+  --raggio-piccolo: 8px;
+  --ombra: 0 1px 2px rgba(15, 23, 42, 0.04), 0 6px 18px rgba(15, 23, 42, 0.05);
+  --bordo: #e7e2da;
+  --oro: #b45309;
+  --oro-chiaro: #fff7e6;
+}
+main.main-viewport { background: #faf8f5; }
+.card, .chart-box, .kpi-box { border-radius: var(--raggio); border-color: var(--bordo); box-shadow: var(--ombra); }
+.kpi-box { border-left-width: 1px; padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start; }
+.kpi-icona {
+  flex: none; width: 42px; height: 42px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 1.25rem; background: var(--oro-chiaro);
+}
+.kpi-box.teal .kpi-icona { background: #e6f6f3; }
+.kpi-box.cobalt .kpi-icona { background: #e9eefb; }
+.kpi-box.slate .kpi-icona { background: #eef1f5; }
+.modal-card { border-radius: var(--raggio); box-shadow: 0 20px 60px rgba(15, 23, 42, 0.25); }
+.field input, .field select, .field textarea, .select-inline { border-radius: var(--raggio-piccolo); }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--oro); box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.15); }
+.btn-action, .btn-submit { border-radius: var(--raggio-piccolo); transition: filter 0.15s, transform 0.15s; }
+.btn-action:hover:not(:disabled) { filter: brightness(1.08); transform: translateY(-1px); }
+.btn-outline { background: #ffffff; border-color: #d9d3c9; border-radius: var(--raggio-piccolo); transition: border-color 0.15s, background 0.15s; }
+.btn-outline:hover:not(:disabled) { border-color: var(--oro); background: var(--oro-chiaro); }
+.nav-link { border-radius: var(--raggio-piccolo); }
+.nav-link.active { border-left: none; box-shadow: inset 3px 0 0 var(--oro); }
+
+/* tabelle: riga evidenziata al passaggio, codice a larghezza fissa */
+tbody tr { transition: background 0.12s; }
+tbody tr:hover { background: #fffbf3; }
+th { background: #faf8f5; }
+th:first-child { border-top-left-radius: var(--raggio-piccolo); }
+th:last-child { border-top-right-radius: var(--raggio-piccolo); }
+.codice { font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace; font-size: 0.92rem; letter-spacing: 0.02em; }
+
+/* fasce orarie dell'area visitatore */
+.slot-btn { padding: 9px 14px; }
+.slot-btn.disabled { background: #f3f1ed; border-style: dashed; color: #57534e; opacity: 1; }
+.slot-btn.selected { box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.2); }
+
+/* intestazione di benvenuto */
+.benvenuto {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding: 18px 22px;
+  background: linear-gradient(110deg, #fff7e6, #fdf3e1 60%, #f6efe4); border: 1px solid #f1e3c8; border-radius: var(--raggio);
+}
+.benvenuto strong { font-family: 'Lora', serif; font-size: 1.3rem; color: #78350f; }
+.benvenuto span { color: #57534e; font-size: 0.95rem; }
+
+/* periodo senza dati nei grafici */
+.grafico-vuoto { height: 100%; display: grid; place-items: center; text-align: center; color: #57534e; font-size: 0.95rem; }
+.grafico-vuoto b { display: block; font-size: 1.6rem; margin-bottom: 6px; }
+.tabella-quote td { padding: 10px 8px; }
+.barra-quota { height: 6px; border-radius: 3px; background: #f1ece4; overflow: hidden; margin-top: 6px; }
+.barra-quota i { display: block; height: 100%; border-radius: 3px; }
+
+/* ==========================================================
+   STILE "VETRO": angoli ovali, riquadri semitrasparenti su sfondo sfumato,
+   piccolo movimento all'apertura delle pagine. I riquadri restano quasi bianchi
+   (82%) così il testo scuro si legge bene anche sopra le sfumature.
+   ========================================================== */
+/* angoli ovali e movimento leggero */
+:root { --r-grande: 20px; --r-medio: 14px; }
+.card, .chart-box, .kpi-box { border-radius: var(--r-grande); }
+.modal-card { border-radius: 24px; border-top: none; }
+.btn-action, .btn-submit, .btn-outline,
+.select-inline, .slot-btn { border-radius: 999px; }
+.field input, .field select, .field textarea { border-radius: var(--r-medio); }
+.nav-link { border-radius: 999px; box-shadow: none; }
+.nav-link.active { box-shadow: none; border-left: none; }
+/* solo i riquadri entrano con l'animazione: finestre, avvisi e sala 3D restano fermi */
+.page-section.active > :is(.card, .kpi-row, .charts-duo-grid, .benvenuto) { animation: sali 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.page-section.active > .charts-duo-grid { animation-delay: 0.08s; }
+.page-section.active > .charts-duo-grid + .charts-duo-grid { animation-delay: 0.16s; }
+.kpi-box, .chart-box { transition: transform 0.2s, box-shadow 0.2s; }
+.kpi-box:hover, .chart-box:hover { transform: translateY(-3px); }
+tbody tr td:first-child { border-radius: 12px 0 0 12px; }
+tbody tr td:last-child { border-radius: 0 12px 12px 0; }
+@keyframes sali { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+/* menu "fluttuante" solo su schermi larghi */
+@media (min-width: 861px) {
+  #dashboard-app { padding: 14px; gap: 14px; }
+  aside.sidebar { border-radius: 26px; border-right: none; }
+  main.main-viewport { border-radius: 26px; padding: 30px 32px; }
+}
+/* sfondo sfumato e riquadri "vetro" */
+#dashboard-app {
+  background:
+    radial-gradient(900px 500px at 8% 0%, #fde7c4 0%, transparent 60%),
+    radial-gradient(800px 600px at 100% 100%, #cdeee8 0%, transparent 55%),
+    radial-gradient(600px 400px at 70% 10%, #e7e3fb 0%, transparent 60%),
+    #f6f3ee;
+}
+main.main-viewport { background: transparent; }
+aside.sidebar,
+.card, .chart-box, .kpi-box {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px) saturate(1.3);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+}
+.kpi-box:hover, .chart-box:hover { box-shadow: 0 14px 40px rgba(15, 23, 42, 0.1); }
+.nav-link:hover { background: rgba(255, 255, 255, 0.7); }
+.nav-link.active { background: linear-gradient(90deg, #b45309, #c2410c); color: #fff; }
+.kpi-icona { background: rgba(255, 255, 255, 0.85) !important; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08); }
+th { background: transparent; }
+tbody tr:hover { background: rgba(255, 255, 255, 0.75); }
+.benvenuto { background: rgba(255, 255, 255, 0.55); backdrop-filter: blur(16px); border-color: rgba(255,255,255,.8); border-radius: var(--r-grande); }
+.modal-card { background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255,255,255,.9); }
+
+.kpi-box.teal, .kpi-box.cobalt, .kpi-box.slate { border-left-color: rgba(255, 255, 255, 0.8); }
+.login-box { border-radius: 24px; }
+/* con il testo più grande le tabelle restano dentro lo schermo anche su un portatile da 1366px */
+.card:has(> .tabella-scorrevole), .card:has(> table) { padding: 22px; }
+th, td { padding: 12px 9px; }

@@ -36,14 +36,14 @@ const posti = computed(() => descrizionePosti(props.prenotazione.posti))
     </p>
     <div v-if="confermata" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap">
       <button
-        style="background: #b45309; border: none; color: #ffffff; padding: 8px 16px; font-weight: 700; font-size: 0.9rem; cursor: pointer"
+        style="background: #b45309; border: none; color: #ffffff; padding: 8px 16px; font-weight: 700; font-size: 0.9rem; cursor: pointer; border-radius: 999px"
         @click="$emit('ricevuta', prenotazione)"
       >
         📄 Dettaglio Prenotazione
       </button>
       <button
         v-if="prenotazione.annullabile"
-        style="background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; padding: 8px 16px; font-weight: 700; font-size: 0.9rem; cursor: pointer"
+        style="background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; padding: 8px 16px; font-weight: 700; font-size: 0.9rem; cursor: pointer; border-radius: 999px"
         @click="$emit('disdici', prenotazione)"
       >
         Disdici Prenotazione
