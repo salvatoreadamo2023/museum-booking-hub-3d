@@ -254,7 +254,7 @@ function vaiAPrenotazioni() {
   border-radius: 8px;
   z-index: 100;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.25);
-  font-size: 14px;
+  font-size: 15px;
   white-space: nowrap;
 }
 
@@ -295,7 +295,7 @@ function vaiAPrenotazioni() {
 }
 
 .modal-subtitle {
-  font-size: 14px;
+  font-size: 15px;
   color: #64748b;
   margin-bottom: 24px;
 }
@@ -321,7 +321,7 @@ function vaiAPrenotazioni() {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .detail-row .label {
@@ -336,7 +336,7 @@ function vaiAPrenotazioni() {
 .code-highlight {
   color: #b45309 !important;
   font-family: monospace;
-  font-size: 15px;
+  font-size: 16px;
   background: #fef3c7;
   padding: 2px 8px;
   border-radius: 4px;
@@ -350,7 +350,7 @@ function vaiAPrenotazioni() {
   padding: 12px 20px;
   border-radius: 8px;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.1s ease;
 }

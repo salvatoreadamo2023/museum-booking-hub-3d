@@ -25,7 +25,7 @@ const dati = computed(() => ({
 const opzioni = {
   responsive: true,
   maintainAspectRatio: false,
-  plugins: { legend: { position: 'right', labels: { boxWidth: 12, font: { size: 13 } } } },
+  plugins: { legend: { position: 'right', labels: { boxWidth: 12, font: { size: 14 } } } },
   cutout: '65%',
 }
 </script>

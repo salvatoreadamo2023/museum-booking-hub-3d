@@ -172,7 +172,7 @@ function testoSuggerimento(st) {
   border: 1px solid #1d2742;
   color: #e8ecf6;
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
 }
 .caricamento {
   position: absolute;
@@ -205,9 +205,9 @@ function testoSuggerimento(st) {
   border-radius: 14px;
   padding: 12px 14px;
 }
-.etichetta { font-size: 14px; color: #c3cbe0; }
+.etichetta { font-size: 15px; color: #c3cbe0; }
 .etichetta.chiara { color: #ffffff; font-weight: 600; }
-.etichetta.oro { color: #f0c46e; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.etichetta.oro { color: #f0c46e; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
 .scheda {
   position: absolute;
   top: 14px;
@@ -215,7 +215,7 @@ function testoSuggerimento(st) {
   width: min(280px, calc(100% - 28px));
 }
 .scheda h4 { font-family: 'Lora', serif; font-size: 20px; margin: 4px 0 6px; }
-.scheda p { margin: 0 0 12px; color: #dde3f0; font-size: 14px; line-height: 1.5; }
+.scheda p { margin: 0 0 12px; color: #dde3f0; font-size: 15px; line-height: 1.5; }
 .barra {
   position: absolute;
   left: 14px;
@@ -229,7 +229,7 @@ function testoSuggerimento(st) {
 }
 .gruppo { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; min-width: 0; }
 .vuoto { color: #dde3f0; }
-.legenda { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: #dde3f0; }
+.legenda { display: flex; gap: 14px; flex-wrap: wrap; font-size: 14px; color: #dde3f0; }
 .legenda i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
 .legenda .libero { background: #9fc2ff; }
 .legenda .scelto { background: #2fe39a; }
@@ -243,13 +243,13 @@ function testoSuggerimento(st) {
   border-radius: 6px;
   padding: 5px 8px;
   font-family: 'Inter', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 .totale { font-family: 'Lora', serif; font-size: 19px; font-variant-numeric: tabular-nums; }
 .pulsante {
   cursor: pointer;
   font-family: 'Inter', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   padding: 10px 18px;
   border-radius: 999px;
@@ -265,7 +265,7 @@ function testoSuggerimento(st) {
 .suggerimento {
   position: absolute;
   pointer-events: none;
-  font-size: 13px;
+  font-size: 14px;
   background: rgba(6, 10, 22, 0.92);
   border: 1px solid rgba(120, 160, 255, 0.3);
   padding: 7px 10px;
@@ -278,7 +278,7 @@ function testoSuggerimento(st) {
   left: 50%;
   top: 18px;
   transform: translateX(-50%);
-  font-size: 14px;
+  font-size: 15px;
   padding: 9px 16px;
   border-radius: 999px;
   background: rgba(6, 10, 22, 0.86);

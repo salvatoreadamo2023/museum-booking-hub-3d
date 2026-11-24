@@ -18,7 +18,7 @@ defineProps({
     "
   >
     <div>
-      <h1 style="font-family: 'Lora', serif; font-size: 2.2rem; color: #1e293b">{{ title }}</h1>
+      <h1 style="font-family: 'Lora', serif; font-size: 2rem; color: #1e293b">{{ title }}</h1>
       <p v-if="subtitle" style="font-size: 1rem; color: #475569; margin-top: 4px">{{ subtitle }}</p>
     </div>
     <slot />

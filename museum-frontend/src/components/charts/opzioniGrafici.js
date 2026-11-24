@@ -2,7 +2,7 @@ import { Chart } from 'chart.js'
 
 // Stile comune a tutti i grafici: stesso font del resto dell'app e testo leggibile
 Chart.defaults.font.family = "'Inter', sans-serif"
-Chart.defaults.font.size = 13
+Chart.defaults.font.size = 14
 Chart.defaults.color = '#334155'
 
 export const ORO = '#b45309'
