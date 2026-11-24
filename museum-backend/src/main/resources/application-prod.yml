@@ -1,0 +1,22 @@
+# Impostazioni per la PRODUZIONE, dietro nginx. Si attivano con la variabile SPRING_PROFILES_ACTIVE=prod
+# e si sommano a application.yml (qui ci sono solo le differenze).
+
+server:
+  # il backend ascolta solo sulla macchina stessa: da fuori si passa per forza da nginx e dai suoi limiti per IP
+  address: ${SERVER_ADDRESS:127.0.0.1}
+
+logging:
+  level:
+    com.museumhub.booking: INFO
+
+app:
+  cookie:
+    # i cookie di sessione viaggiano solo su HTTPS
+    secure: true
+
+# Swagger spento: in produzione l'elenco delle API non serve a chi usa il sito
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false

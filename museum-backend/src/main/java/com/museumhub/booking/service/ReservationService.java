@@ -19,8 +19,9 @@ import com.museumhub.booking.repository.ReservationSeatRepository;
 import com.museumhub.booking.repository.TariffaRepository;
 import com.museumhub.booking.repository.TourRepository;
 import com.museumhub.booking.repository.UserRepository;
-import com.museumhub.booking.util.Prezzi;
 import com.museumhub.booking.util.Paginazione;
+import com.museumhub.booking.util.Prezzi;
+import com.museumhub.booking.util.VincoliDatabase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -50,6 +51,8 @@ public class ReservationService {
 
     private static final DateTimeFormatter ORA = DateTimeFormatter.ofPattern("HH:mm");
     private static final String POSTO_OCCUPATO = "Posto già prenotato";
+    /** Nome del vincolo UNIQUE sul posto, dichiarato in ReservationSeat. */
+    private static final String VINCOLO_POSTO = "uk_seat_slot_posto";
     private static final String POSTI_INSUFFICIENTI = "Posti insufficienti nella fascia selezionata";
 
     private final ReservationRepository reservationRepository;
@@ -251,7 +254,11 @@ public class ReservationService {
         try {
             return reservationRepository.saveAndFlush(prenotazione);
         } catch (DataIntegrityViolationException e) {
-            throw new ApiException(HttpStatus.CONFLICT, POSTO_OCCUPATO);
+            // solo il vincolo del posto significa "posto già occupato": ogni altro errore resta un errore vero
+            if (VincoliDatabase.violato(e, VINCOLO_POSTO)) {
+                throw new ApiException(HttpStatus.CONFLICT, POSTO_OCCUPATO);
+            }
+            throw e;
         }
     }
 

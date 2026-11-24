@@ -29,10 +29,20 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
     boolean existsByUserId(Long userId);
 
-    /** Visite confermate gia' iniziate di un utente per un itinerario, inoltre si può a lasciare un feedback. */
+    /** Visite confermate gia' iniziate di un utente per un itinerario: solo dopo una visita si può lasciare un feedback. */
     @Query("select count(r) from Reservation r where r.user.id = :userId and r.tour.id = :tourId "
             + "and r.stato = com.museumhub.booking.entity.StatoPrenotazione.CONFERMATA "
             + "and (r.dataVisita < :oggi or (r.dataVisita = :oggi and r.orario < :ora))")
     long contaVisiteConcluse(@Param("userId") Long userId, @Param("tourId") Long tourId,
                              @Param("oggi") LocalDate oggi, @Param("ora") LocalTime ora);
+
+    /** Le stesse visite concluse, ma solo quelle senza feedback, dalla piu' vecchia: il feedback nuovo va sulla prima. */
+    @Query("select r from Reservation r where r.user.id = :userId and r.tour.id = :tourId "
+            + "and r.stato = com.museumhub.booking.entity.StatoPrenotazione.CONFERMATA "
+            + "and (r.dataVisita < :oggi or (r.dataVisita = :oggi and r.orario < :ora)) "
+            + "and not exists (select f.id from Feedback f where f.reservation = r) "
+            + "order by r.dataVisita, r.orario, r.id")
+    List<Reservation> visiteConcluseSenzaFeedback(@Param("userId") Long userId, @Param("tourId") Long tourId,
+                                                  @Param("oggi") LocalDate oggi, @Param("ora") LocalTime ora,
+                                                  Pageable pagina);
 }

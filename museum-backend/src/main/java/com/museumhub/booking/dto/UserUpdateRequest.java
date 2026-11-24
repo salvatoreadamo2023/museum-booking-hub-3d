@@ -20,6 +20,7 @@ public record UserUpdateRequest(
         String email,
 
         @Pattern(regexp = "^$|.{8,72}", message = "La password deve avere tra 8 e 72 caratteri")
+        @PasswordBcrypt
         String password,
 
         @NotNull(message = "Il ruolo è obbligatorio")

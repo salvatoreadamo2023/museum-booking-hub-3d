@@ -1,5 +1,6 @@
 package com.museumhub.booking.config;
 
+import com.museumhub.booking.dto.PasswordBcryptValidator;
 import com.museumhub.booking.entity.Ruolo;
 import com.museumhub.booking.entity.StatoAccount;
 import com.museumhub.booking.entity.Tariffa;
@@ -62,9 +63,11 @@ public class DataInitializer implements CommandLineRunner {
         if (userRepository.existsByEmail(adminEmail)) {
             return;
         }
-        if (adminPassword == null || adminPassword.length() < 8 || adminPassword.length() > 72) {
-            // stessi limiti della registrazione e del login: oltre 72 caratteri l'admin non potrebbe piu' entrare
-            throw new IllegalStateException("ADMIN_PASSWORD mancante o non tra 8 e 72 caratteri nel file .env");
+        if (adminPassword == null || adminPassword.length() < 8 || adminPassword.length() > 72
+                || !PasswordBcryptValidator.entroIlLimite(adminPassword)) {
+            // stessi limiti della registrazione e del login: da 8 a 72 caratteri e al massimo 72 byte per BCrypt
+            throw new IllegalStateException(
+                    "ADMIN_PASSWORD mancante o non valida nel file .env: da 8 a 72 caratteri e al massimo 72 byte");
         }
         userRepository.save(User.builder()
                 .nome(adminNome)

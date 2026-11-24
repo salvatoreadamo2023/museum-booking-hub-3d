@@ -12,5 +12,6 @@ public record LoginRequest(
 
         @NotBlank(message = "La password è obbligatoria")
         @Size(max = 72, message = "La password può avere al massimo 72 caratteri")
+        @PasswordBcrypt
         String password) {
 }

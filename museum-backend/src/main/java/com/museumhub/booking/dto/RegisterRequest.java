@@ -16,5 +16,6 @@ public record RegisterRequest(
 
         @NotBlank(message = "La password è obbligatoria")
         @Size(min = 8, max = 72, message = "La password deve avere tra 8 e 72 caratteri")
+        @PasswordBcrypt
         String password) {
 }
