@@ -34,7 +34,7 @@ public record TourRequest(
 
         @NotNull(message = "La capienza è obbligatoria")
         @Min(value = 1, message = "La capienza deve essere di almeno 1 posto")
-        @Max(value = 100, message = "La capienza non può superare 100 posti")
+        @Max(value = 20, message = "La capienza non può superare 20 posti")
         Integer capienza,
 
         @NotEmpty(message = "Serve almeno una fascia oraria")

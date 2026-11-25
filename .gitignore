@@ -1,5 +1,5 @@
 .env
-.screenshot
+screenshot/
 target/
 node_modules/
 dist/

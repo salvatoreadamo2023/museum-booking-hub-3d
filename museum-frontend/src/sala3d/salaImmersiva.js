@@ -13,7 +13,7 @@ import { ease, rng } from './utilita'
 
 const V = THREE.Vector3
 const C = THREE.Color
-const MAX_POSTI = 100 // come il limite di capienza del backend
+const MAX_POSTI = 20 // come il limite di capienza del backend
 const RIDOTTO = matchMedia('(prefers-reduced-motion: reduce)').matches
 
 // Il backend non ha un "tema" per l'itinerario: lo scelgo dall'id, così ogni itinerario ha sempre la sua atmosfera

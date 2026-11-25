@@ -12,7 +12,7 @@ const titolo = ref(props.tour?.titolo ?? '')
 const descrizione = ref(props.tour?.descrizione ?? '')
 const durataMin = ref(props.tour?.durataMin ?? 60)
 const prezzo = ref(props.tour?.prezzo ?? 12)
-const capienza = ref(props.tour?.capienza ?? 30)
+const capienza = ref(props.tour?.capienza ?? 20)
 // solo le fasce attive: quelle tolte in passato restano nel database per le prenotazioni già fatte
 const orari = ref(props.tour ? props.tour.orari.filter((o) => o.attivo).map((o) => o.orario) : ['10:30', '16:00'])
 const nuovoOrario = ref('')
@@ -105,8 +105,8 @@ async function elimina() {
       </div>
       <div class="field">
         <label for="tour-capienza">Capienza massima</label>
-        <input id="tour-capienza" v-model.number="capienza" type="number" min="1" max="100" required />
-        <div class="form-hint">Da 1 a 100 posti.</div>
+        <input id="tour-capienza" v-model.number="capienza" type="number" min="1" max="20" required />
+        <div class="form-hint">Da 1 a 20 posti.</div>
       </div>
       <div class="field">
         <label for="tour-orario">Fasce orarie</label>
